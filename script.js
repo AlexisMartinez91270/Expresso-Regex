@@ -33,11 +33,15 @@ const testVide = function () {
 
 const createList = function () {
   resultList.innerHTML = "";
-  resultat.forEach((item) => {
+  for (let i = 0; i < resultat.length; i++) {
     let li = document.createElement("li");
-    li.innerText = item;
+    li.innerText = resultat[i];
+    li.onclick = function () {
+      let long = resultat[i].toString();
+      alert(long.length);
+    };
     resultList.appendChild(li);
-  });
+  }
 };
 
 const envoiTxt = function () {
