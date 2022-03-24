@@ -9,7 +9,7 @@ const btnEnv = document.getElementById("btnEnv");
 const btnTest = document.getElementById("btnTest");
 const btnMail = document.getElementById("btnMail");
 const btnIP = document.getElementById("btnIP");
-let olSelectedValues = document.getElementById("resultList");
+let resultList = document.getElementById("resultList");
 let resultat;
 
 const initRegex = function () {
@@ -31,11 +31,12 @@ const testVide = function () {
   return resultat;
 };
 
-const loadList = function () {
+const createList = function () {
+  resultList.innerHTML = "";
   resultat.forEach((item) => {
     let li = document.createElement("li");
     li.innerText = item;
-    olSelectedValues.appendChild(li);
+    resultList.appendChild(li);
   });
 };
 
@@ -46,7 +47,7 @@ const envoiTxt = function () {
   if (vide === null) {
     resultat = Array.from(regex[Symbol.matchAll](txt.value));
   }
-  loadList();
+  createList();
   console.log(resultat);
 };
 
@@ -65,7 +66,10 @@ const testExpR = function () {
       txtExpR.style.color = "red";
     }
   }
-  txtExpR.textContent = resultat;
+  resultList.innerHTML = "";
+  let li = document.createElement("li");
+  li.innerText = resultat;
+  resultList.appendChild(li);
   console.log(resultat);
 };
 
@@ -79,7 +83,7 @@ const email = function () {
   if (vide === null) {
     resultat = Array.from(regex[Symbol.matchAll](txt.value));
   }
-  loadList();
+  createList();
   console.log(resultat);
 };
 
@@ -93,7 +97,7 @@ const ip = function () {
   if (vide === null) {
     resultat = Array.from(regex[Symbol.matchAll](txt.value));
   }
-  loadList();
+  createList();
   console.log(resultat);
 };
 
