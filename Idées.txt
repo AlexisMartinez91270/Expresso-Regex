@@ -1,0 +1,12 @@
+Expression classique (Adresse IP, etc...)
+Texte à traiter
+Sa propre expression
+Résultat
+Lister les résultats (créer liste HTML avec des onclick)
+Selectionner dans le texte de base le résultat focus (utiliser index des éléments trouver)
+liste déroulante des expression courante(ip, e-mail,etc...)
+
+
+Difficultés: 
+- Afficher le texte comme il était avant
+- Récupérer expression régulière et l'appliquer sur le texte

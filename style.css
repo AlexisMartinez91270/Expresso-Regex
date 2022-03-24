@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text {
+  width: 40%;
+  margin: 1%;
+  float: left;
+  height: 50vh;
+}
+.text textarea {
+  width: 100%;
+}
+
+#btn {
+  float: left;
+  width: 4%;
+  height: 50vh;
+}
+
+#txtExpR {
+  display: block;
+  float: left;
+}
