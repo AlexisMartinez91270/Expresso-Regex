@@ -8,31 +8,39 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="text">
-      <p>Votre texte</p>
-      <textarea name="textfield" id="txt" rows="10">192.0.126.253</textarea>
-    </div>
-    <div class="text">
-      <p>Votre Expression</p>
-      <textarea name="textfield" id="expR" rows="10">.[0-9]+</textarea>
-    </div>
-    <div id="btn">
-      <button id="btnEnv">Traiter</button>
-    </div>
-    <div id="btn">
-      <button id="btnTest">Tester</button>
-    </div>
-    <div id="btn">
-      <button id="btnMail">E-mail</button>
-    </div>
-    <div id="btn">
-      <button id="btnIP">Adresse IP</button>
-    </div>
+    <div id="mainConteneur">
+      <div id="conteneurBtn">
+        <div class="btn">
+          <button id="btnTest">Test</button>
+        </div>
+        <span>Classic regular expression</span>
+        <div class="btn">
+          <button id="btnMail">E-mail</button>
+        </div>
+        <div class="btn">
+          <button id="btnIP">Adresse IP</button>
+        </div>
+      </div>
 
-    <div id="txtExpR">
-      <ol id="resultList"></ol>
-    </div>
+      <div id="conteneurTxt">
+        <div class="text">
+          <p>Regular Expression</p>
+          <p id="match"></p>
+          <textarea id="expR" rows="1">
+Insert your regular expression here</textarea
+          >
+        </div>
+        <div class="text">
+          <p>Test String</p>
+          <textarea id="txt" rows="38">Insert your text here</textarea>
+        </div>
+      </div>
 
+      <div id="txtExpR">
+        <span>Match Information</span>
+        <ol id="resultList"></ol>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

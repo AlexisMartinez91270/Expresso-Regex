@@ -4,8 +4,8 @@ const txt = document.getElementById("txt");
 console.log(txt);
 const expR = document.getElementById("expR");
 console.log(expR);
+const match = document.getElementById("match");
 const txtExpR = document.getElementById("txtExpR");
-const btnEnv = document.getElementById("btnEnv");
 const btnTest = document.getElementById("btnTest");
 const btnMail = document.getElementById("btnMail");
 const btnIP = document.getElementById("btnIP");
@@ -28,6 +28,10 @@ const testVide = function () {
   } else {
     resultat = null;
   }
+  resultList.innerHTML = "";
+  let li = document.createElement("li");
+  li.innerText = resultat;
+  resultList.appendChild(li);
   return resultat;
 };
 
@@ -44,8 +48,8 @@ const createList = function () {
   }
 };
 
-const envoiTxt = function () {
-  txtExpR.style.color = "black";
+const testTxt = function () {
+  txtExpR.style.color = "rgb(202, 201, 201)";
   const regex = initRegex();
   let vide = testVide();
   if (vide === null) {
@@ -55,32 +59,27 @@ const envoiTxt = function () {
   console.log(resultat);
 };
 
-btnEnv.addEventListener("click", envoiTxt);
+btnTest.addEventListener("click", testTxt);
 
-const testExpR = function () {
+onkeyup = function () {
   const regex = initRegex();
-  let vide = testVide();
-  if (vide === null) {
-    resultat = regex.test(txt.value);
-    if (resultat) {
-      resultat = "Au moins une correspondance";
-      txtExpR.style.color = "green";
-    } else {
-      resultat = "Aucune correspondance";
-      txtExpR.style.color = "red";
-    }
+  resultat = regex.test(txt.value);
+  if (txt.value == "" || expR.value == "") {
+    resultat = "No Match";
+    match.style.color = "red";
+  } else if (resultat) {
+    resultat = "Match";
+    match.style.color = "green";
+  } else {
+    resultat = "No Match";
+    match.style.color = "red";
   }
-  resultList.innerHTML = "";
-  let li = document.createElement("li");
-  li.innerText = resultat;
-  resultList.appendChild(li);
+  match.textContent = resultat;
   console.log(resultat);
 };
 
-btnTest.addEventListener("click", testExpR);
-
 const email = function () {
-  txtExpR.style.color = "black";
+  txtExpR.style.color = "rgb(202, 201, 201)";
   const expRMail = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}";
   const regex = new RegExp(expRMail, "g");
   let vide = testVide();
@@ -94,7 +93,7 @@ const email = function () {
 btnMail.addEventListener("click", email);
 
 const ip = function () {
-  txtExpR.style.color = "black";
+  txtExpR.style.color = "rgb(202, 201, 201)";
   const expRIp = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b";
   const regex = new RegExp(expRIp, "g");
   let vide = testVide();
@@ -106,3 +105,11 @@ const ip = function () {
 };
 
 btnIP.addEventListener("click", ip);
+
+const textarea = document.querySelectorAll("textarea");
+
+for (let i = 0; i < textarea.length; i++) {
+  textarea[i].addEventListener("focus", function () {
+    textarea[i].textContent = "";
+  });
+}
