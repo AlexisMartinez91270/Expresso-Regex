@@ -19,20 +19,22 @@ const initRegex = function () {
   return regex;
 };
 
+const error = document.getElementById("error");
+
 const testVide = function () {
   if (txt.value == "" && expR.value == "") {
-    resultat = "Veuillez rentrez du texte et votre expression régulière";
+    resultat = 1;
+    error.textContent =
+      "Veuillez rentrez du texte et votre expression régulière";
   } else if (expR.value == "") {
-    resultat = "Veuillez rentrez votre expression régulière";
+    resultat = 1;
+    error.textContent = "Veuillez rentrez votre expression régulière";
   } else if (txt.value == "") {
-    resultat = "Veuillez rentrez du texte";
+    resultat = 1;
+    error.textContent = "Veuillez rentrez du texte";
   } else {
     resultat = null;
   }
-  resultList.innerHTML = "";
-  let li = document.createElement("li");
-  li.innerText = resultat;
-  resultList.appendChild(li);
   return resultat;
 };
 

@@ -94,6 +94,10 @@ body {
 }
 
 /* Result */
+#error {
+  color: red;
+  margin-top: 3%;
+}
 #resultList {
   margin-top: 10%;
   margin-left: 5.5%;
