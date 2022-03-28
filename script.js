@@ -122,9 +122,6 @@ const button = document.querySelectorAll("button");
 function dark() {
   body.style.backgroundColor = "black";
   body.style.color = "rgb(163, 162, 162)";
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "rgb(163, 162, 162)";
-  }
   for (let i = 0; i < textarea.length; i++) {
     button[i].style.backgroundColor = "white";
     button[i].style.color = "black";
@@ -142,6 +139,7 @@ function dark() {
     });
   }
   for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "rgb(163, 162, 162)";
     li[i].addEventListener("mouseover", function () {
       li[i].style.color = "white";
       li[i].style.fontWeight = "bold";
@@ -156,9 +154,6 @@ function dark() {
 function gray() {
   body.style.backgroundColor = "#222";
   body.style.color = "rgb(202, 201, 201)";
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "rgb(202, 201, 201)";
-  }
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "#333";
     textarea[i].style.color = "rgb(202, 201, 201)";
@@ -176,6 +171,7 @@ function gray() {
     });
   }
   for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "rgb(202, 201, 201)";
     li[i].addEventListener("mouseover", function () {
       li[i].style.color = "white";
       li[i].style.fontWeight = "bold";
@@ -190,9 +186,6 @@ function gray() {
 function white() {
   body.style.backgroundColor = "white";
   body.style.color = "black";
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "black";
-  }
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "rgb(202, 201, 201)";
     textarea[i].style.color = "black";
@@ -210,8 +203,9 @@ function white() {
     });
   }
   for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "black";
     li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "rgb(202, 201, 201)";
+      li[i].style.color = "#999";
       li[i].style.fontWeight = "bold";
     });
     li[i].addEventListener("mouseout", function () {
@@ -224,9 +218,6 @@ function white() {
 function blue() {
   body.style.backgroundColor = "lightblue";
   body.style.color = "white";
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "white";
-  }
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "white";
     textarea[i].style.color = "black";
@@ -244,6 +235,7 @@ function blue() {
     });
   }
   for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "white";
     li[i].addEventListener("mouseover", function () {
       li[i].style.color = "rgb(6, 107, 189)";
       li[i].style.fontWeight = "bold";
