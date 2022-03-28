@@ -11,6 +11,7 @@ const btnMail = document.getElementById("btnMail");
 const btnIP = document.getElementById("btnIP");
 let resultList = document.getElementById("resultList");
 let resultat;
+let li;
 
 const initRegex = function () {
   const regex = new RegExp(`${expR.value}`, "g");
@@ -46,10 +47,10 @@ const createList = function () {
     };
     resultList.appendChild(li);
   }
+  li = document.querySelectorAll("li");
 };
 
 const testTxt = function () {
-  txtExpR.style.color = "rgb(202, 201, 201)";
   const regex = initRegex();
   let vide = testVide();
   if (vide === null) {
@@ -112,4 +113,144 @@ for (let i = 0; i < textarea.length; i++) {
   textarea[i].addEventListener("focus", function () {
     textarea[i].textContent = "";
   });
+}
+
+// Themes
+const body = document.querySelector("body");
+const button = document.querySelectorAll("button");
+
+function dark() {
+  body.style.backgroundColor = "black";
+  body.style.color = "rgb(163, 162, 162)";
+  for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "rgb(163, 162, 162)";
+  }
+  for (let i = 0; i < textarea.length; i++) {
+    button[i].style.backgroundColor = "white";
+    button[i].style.color = "black";
+    textarea[i].style.backgroundColor = "#222";
+    textarea[i].style.color = "rgb(163, 162, 162)";
+  }
+  for (let i = 0; i < button.length; i++) {
+    button[i].addEventListener("mouseover", function () {
+      button[i].style.backgroundColor = "rgb(163, 162, 162)";
+      button[i].style.color = "black";
+    });
+    button[i].addEventListener("mouseout", function () {
+      button[i].style.backgroundColor = "white";
+      button[i].style.color = "black";
+    });
+  }
+  for (let i = 0; i < li.length; i++) {
+    li[i].addEventListener("mouseover", function () {
+      li[i].style.color = "white";
+      li[i].style.fontWeight = "bold";
+    });
+    li[i].addEventListener("mouseout", function () {
+      li[i].style.color = "rgb(163, 162, 162)";
+      li[i].style.fontWeight = "normal";
+    });
+  }
+}
+
+function gray() {
+  body.style.backgroundColor = "#222";
+  body.style.color = "rgb(202, 201, 201)";
+  for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "rgb(202, 201, 201)";
+  }
+  for (let i = 0; i < textarea.length; i++) {
+    textarea[i].style.backgroundColor = "#333";
+    textarea[i].style.color = "rgb(202, 201, 201)";
+  }
+  for (let i = 0; i < button.length; i++) {
+    button[i].style.backgroundColor = "white";
+    button[i].style.color = "black";
+    button[i].addEventListener("mouseover", function () {
+      button[i].style.backgroundColor = "rgb(202, 201, 201)";
+      button[i].style.color = "black";
+    });
+    button[i].addEventListener("mouseout", function () {
+      button[i].style.backgroundColor = "white";
+      button[i].style.color = "black";
+    });
+  }
+  for (let i = 0; i < li.length; i++) {
+    li[i].addEventListener("mouseover", function () {
+      li[i].style.color = "white";
+      li[i].style.fontWeight = "bold";
+    });
+    li[i].addEventListener("mouseout", function () {
+      li[i].style.color = "rgb(163, 162, 162)";
+      li[i].style.fontWeight = "normal";
+    });
+  }
+}
+
+function white() {
+  body.style.backgroundColor = "white";
+  body.style.color = "black";
+  for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "black";
+  }
+  for (let i = 0; i < textarea.length; i++) {
+    textarea[i].style.backgroundColor = "rgb(202, 201, 201)";
+    textarea[i].style.color = "black";
+  }
+  for (let i = 0; i < button.length; i++) {
+    button[i].style.backgroundColor = "rgb(202, 201, 201)";
+    button[i].style.color = "black";
+    button[i].addEventListener("mouseover", function () {
+      button[i].style.backgroundColor = "#999";
+      button[i].style.color = "black";
+    });
+    button[i].addEventListener("mouseout", function () {
+      button[i].style.backgroundColor = "rgb(202, 201, 201)";
+      button[i].style.color = "black";
+    });
+  }
+  for (let i = 0; i < li.length; i++) {
+    li[i].addEventListener("mouseover", function () {
+      li[i].style.color = "rgb(202, 201, 201)";
+      li[i].style.fontWeight = "bold";
+    });
+    li[i].addEventListener("mouseout", function () {
+      li[i].style.color = "black";
+      li[i].style.fontWeight = "normal";
+    });
+  }
+}
+
+function blue() {
+  body.style.backgroundColor = "lightblue";
+  body.style.color = "white";
+  for (let i = 0; i < li.length; i++) {
+    li[i].style.color = "white";
+  }
+  for (let i = 0; i < textarea.length; i++) {
+    textarea[i].style.backgroundColor = "white";
+    textarea[i].style.color = "black";
+  }
+  for (let i = 0; i < button.length; i++) {
+    button[i].style.backgroundColor = "white";
+    button[i].style.color = "black";
+    button[i].addEventListener("mouseover", function () {
+      button[i].style.backgroundColor = "rgb(6, 107, 189)";
+      button[i].style.color = "white";
+    });
+    button[i].addEventListener("mouseout", function () {
+      button[i].style.backgroundColor = "white";
+      button[i].style.color = "black";
+    });
+  }
+  for (let i = 0; i < li.length; i++) {
+    li[i].addEventListener("mouseover", function () {
+      li[i].style.color = "rgb(6, 107, 189)";
+      li[i].style.fontWeight = "bold";
+    });
+    li[i].addEventListener("mouseout", function () {
+      li[i].style.color = "white";
+      li[i].style.fontWeight = "normal";
+    });
+  }
 }

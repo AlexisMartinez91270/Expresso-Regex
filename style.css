@@ -1,3 +1,4 @@
+/* General */
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +10,33 @@ body {
   color: rgb(202, 201, 201);
   font-size: 1.2rem;
 }
+
+/* Themes */
+#themeContainer {
+  height: 20px;
+  margin-bottom: 2%;
+}
+.themes {
+  width: 20px;
+  height: 20px;
+  margin: 0 1%;
+  float: right;
+  cursor: pointer;
+}
+#dark {
+  background-color: black;
+}
+#gray {
+  background-color: gray;
+}
+#white {
+  background-color: white;
+}
+#blue {
+  background-color: blue;
+}
+
+/* MainConteneur */
 #mainConteneur {
   display: flex;
 }
@@ -36,7 +64,7 @@ body {
   cursor: pointer;
 }
 #conteneurBtn .btn button:hover {
-  background-color: rgb(179, 176, 176);
+  background-color: rgb(202, 201, 201);
 }
 
 /* Input */
@@ -73,4 +101,9 @@ body {
 
 li {
   cursor: pointer;
+  margin: 7% 0;
+}
+li:hover {
+  font-weight: bold;
+  color: white;
 }
