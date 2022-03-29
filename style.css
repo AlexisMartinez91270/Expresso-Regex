@@ -17,23 +17,25 @@ body {
   margin-bottom: 2%;
 }
 .themes {
-  width: 20px;
   height: 20px;
+  text-align: center;
+  padding: 0 3px;
   margin: 0 1%;
   float: right;
   cursor: pointer;
+  background-color: rgb(63, 62, 61);
 }
 #dark {
-  background-color: black;
+  color: black;
 }
 #gray {
-  background-color: gray;
+  color: gray;
 }
 #white {
-  background-color: white;
+  color: white;
 }
 #blue {
-  background-color: blue;
+  color: rgb(53, 88, 240);
 }
 
 /* MainConteneur */

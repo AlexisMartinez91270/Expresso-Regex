@@ -2,9 +2,7 @@
 
 // Datas
 const txt = document.getElementById("txt");
-console.log(txt);
 const expR = document.getElementById("expR");
-console.log(expR);
 const match = document.getElementById("match");
 const btnTest = document.getElementById("btnTest");
 let resultList = document.getElementById("resultList");
@@ -14,7 +12,6 @@ let li;
 // Initialisation de la Regex
 const initRegex = function () {
   const regex = new RegExp(`${expR.innerText}`, "g");
-  console.log(regex);
   return regex;
 };
 
@@ -41,7 +38,6 @@ const testVide = function () {
 // Creation de la list
 const createList = function () {
   let startText = txt.innerText;
-  console.log(resultat);
   resultList.innerHTML = "";
   for (let i = 0; i < resultat.length; i++) {
     let li = document.createElement("li");
@@ -50,7 +46,6 @@ const createList = function () {
     li.onclick = function select() {
       txt.innerHTML = startText;
       let txtMatch = li.innerText;
-      console.log(txtMatch);
       var innerHTML = txt.innerHTML;
       var index = innerHTML.indexOf(txtMatch);
       if (index >= 0) {
@@ -98,16 +93,17 @@ onkeyup = function () {
     match.style.color = "red";
   }
   match.textContent = resultat;
-  console.log(resultat);
 };
 
 // Fonction des expressions régulières classiques
-const regularExpression = function (nom) {
+const regularExpression = function (type) {
   let expReg;
-  if (nom == "email") {
+  if (type == "email") {
     expReg = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}";
-  } else if (nom == "ip") {
+  } else if (type == "ip") {
     expReg = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b";
+  } else if (type == "phone") {
+    expReg = "[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}";
   }
   const regex = new RegExp(expReg, "g");
   let vide = testVide();
@@ -115,7 +111,6 @@ const regularExpression = function (nom) {
     resultat = Array.from(regex[Symbol.matchAll](txt.value));
   }
   createList();
-  console.log(resultat);
 };
 
 // Textarea focus
@@ -158,7 +153,7 @@ function themes(couleur) {
     txtColor = "black";
     borderColor = "black";
     hoverColor = "rgb(148, 147, 147)";
-    textareaColor = "#333";
+    textareaColor = "rgb(202, 201, 201)";
     btnColor = "rgb(202, 201, 201)";
   }
   if (couleur == "blue") {
