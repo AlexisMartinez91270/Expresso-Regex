@@ -114,7 +114,7 @@ txt.addEventListener("focus", function () {
   }
 });
 expR.addEventListener("focus", function () {
-  if (expR.innerText == "insert your epression here") {
+  if (expR.innerText == "insert your expression here") {
     expR.innerHTML = "";
   }
 });
@@ -126,7 +126,7 @@ const body = document.querySelector("body");
 
 function dark() {
   body.style.backgroundColor = "black";
-  body.style.color = "rgb(163, 162, 162)";
+  body.style.color = "white";
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "#222";
     textarea[i].style.color = "rgb(163, 162, 162)";
@@ -134,7 +134,6 @@ function dark() {
   }
   btnTest.style.backgroundColor = "white";
   btnTest.style.color = "black";
-  btnTest.style.borderColor = "white";
   btnTest.addEventListener("mouseover", function () {
     btnTest.style.backgroundColor = "rgb(163, 162, 162)";
     btnTest.style.color = "black";
@@ -144,13 +143,13 @@ function dark() {
     btnTest.style.color = "black";
   });
   for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "rgb(163, 162, 162)";
+    li[i].style.color = "white";
     li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "white";
+      li[i].style.color = "rgb(163, 162, 162)";
       li[i].style.fontWeight = "bold";
     });
     li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "rgb(163, 162, 162)";
+      li[i].style.color = "white";
       li[i].style.fontWeight = "normal";
     });
   }
@@ -164,25 +163,24 @@ function gray() {
     textarea[i].style.color = "rgb(202, 201, 201)";
     textarea[i].style.borderColor = "gray";
   }
-  btnTest.style.borderColor = "gray";
-  btnTest.style.backgroundColor = "white";
+  btnTest.style.backgroundColor = "rgb(202, 201, 201)";
   btnTest.style.color = "black";
   btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+    btnTest.style.backgroundColor = "rgb(148, 147, 147)";
     btnTest.style.color = "black";
   });
   btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "white";
+    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
     btnTest.style.color = "black";
   });
   for (let i = 0; i < li.length; i++) {
     li[i].style.color = "rgb(202, 201, 201)";
     li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "white";
+      li[i].style.color = "rgb(148, 147, 147)";
       li[i].style.fontWeight = "bold";
     });
     li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "rgb(163, 162, 162)";
+      li[i].style.color = "rgb(202, 201, 201)";
       li[i].style.fontWeight = "normal";
     });
   }
@@ -196,22 +194,22 @@ function white() {
     textarea[i].style.color = "black";
     textarea[i].style.borderColor = "black";
   }
-  btnTest.style.borderColor = "black";
-  btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+  btnTest.style.backgroundColor = "white";
   btnTest.style.color = "black";
+  btnTest.style.border = "black";
   btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "#999";
+    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
     btnTest.style.color = "black";
   });
   btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+    btnTest.style.backgroundColor = "white";
     btnTest.style.color = "black";
   });
 
   for (let i = 0; i < li.length; i++) {
     li[i].style.color = "black";
     li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "#999";
+      li[i].style.color = "rgb(202, 201, 201)";
       li[i].style.fontWeight = "bold";
     });
     li[i].addEventListener("mouseout", function () {
@@ -229,25 +227,24 @@ function blue() {
     textarea[i].style.color = "black";
     textarea[i].style.borderColor = "rgb(6, 107, 189)";
   }
-  btnTest.style.borderColor = "gb(6, 107, 189)";
-  btnTest.style.backgroundColor = "white";
-  btnTest.style.color = "black";
+  btnTest.style.backgroundColor = "rgb(6, 107, 189)";
+  btnTest.style.color = "white";
   btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(6, 107, 189)";
+    btnTest.style.backgroundColor = "rgb(3, 68, 121)";
     btnTest.style.color = "white";
   });
   btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "white";
-    btnTest.style.color = "black";
+    btnTest.style.backgroundColor = "rgb(6, 107, 189)";
+    btnTest.style.color = "white";
   });
   for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "white";
+    li[i].style.color = "black";
     li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "rgb(6, 107, 189)";
+      li[i].style.color = "rgb(3, 68, 121)";
       li[i].style.fontWeight = "bold";
     });
     li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "white";
+      li[i].style.color = "black";
       li[i].style.fontWeight = "normal";
     });
   }

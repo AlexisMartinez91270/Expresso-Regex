@@ -60,7 +60,7 @@ select {
   justify-content: center;
 }
 #conteneurBtn .btn #btnTest {
-  background-color: white;
+  background-color: rgb(202, 201, 201);
   color: black;
   text-align: center;
   height: 5vh;
@@ -68,9 +68,10 @@ select {
   width: 100%;
   cursor: pointer;
   border-radius: 5px;
+  border: 1px;
 }
 #conteneurBtn .btn #btnTest:hover {
-  background-color: rgb(202, 201, 201);
+  background-color: rgb(148, 147, 147);
 }
 
 select {
@@ -127,7 +128,7 @@ li {
 }
 li:hover {
   font-weight: bold;
-  color: white;
+  color: rgb(148, 147, 147);
 }
 
 .highlight {
