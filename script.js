@@ -1,5 +1,6 @@
 "use strict";
 
+// Datas
 const txt = document.getElementById("txt");
 console.log(txt);
 const expR = document.getElementById("expR");
@@ -10,12 +11,14 @@ let resultList = document.getElementById("resultList");
 let resultat;
 let li;
 
+// Initialisation de la Regex
 const initRegex = function () {
   const regex = new RegExp(`${expR.innerText}`, "g");
   console.log(regex);
   return regex;
 };
 
+// Test si vide
 const error = document.getElementById("error");
 
 const testVide = function () {
@@ -35,6 +38,7 @@ const testVide = function () {
   return resultat;
 };
 
+// Creation de la list
 const createList = function () {
   let startText = txt.innerText;
   console.log(resultat);
@@ -42,6 +46,7 @@ const createList = function () {
   for (let i = 0; i < resultat.length; i++) {
     let li = document.createElement("li");
     li.innerText = resultat[i];
+    // Creation de la selection du texte lors des onclick li
     li.onclick = function select() {
       txt.innerHTML = startText;
       let txtMatch = li.innerText;
@@ -57,12 +62,16 @@ const createList = function () {
           innerHTML.substring(index + txtMatch.length);
         txt.innerHTML = innerHTML;
       }
+      // Autre méthode (fonctionne seulement si txt est un texarea/input)
+      /*txt.focus()
+      txt.setSelectionRange(index, index + txtMatch.length);*/
     };
     resultList.appendChild(li);
   }
   li = document.querySelectorAll("li");
 };
 
+// Fonction principale
 const testTxt = function () {
   const regex = initRegex();
   let vide = testVide();
@@ -72,6 +81,7 @@ const testTxt = function () {
   createList();
 };
 
+// Création et affichage du Match/No Match
 btnTest.addEventListener("click", testTxt);
 
 onkeyup = function () {
@@ -91,6 +101,7 @@ onkeyup = function () {
   console.log(resultat);
 };
 
+// Fonction des expressions régulières classiques
 const regularExpression = function (nom) {
   let expReg;
   if (nom == "email") {
@@ -119,132 +130,71 @@ expR.addEventListener("focus", function () {
   }
 });
 
-const textarea = document.getElementsByClassName("textarea");
-
 // Themes
 const body = document.querySelector("body");
+const textarea = document.getElementsByClassName("textarea");
 
-function dark() {
-  body.style.backgroundColor = "black";
-  body.style.color = "white";
-  for (let i = 0; i < textarea.length; i++) {
-    textarea[i].style.backgroundColor = "#222";
-    textarea[i].style.color = "rgb(163, 162, 162)";
-    textarea[i].style.borderColor = "white";
+function themes(couleur) {
+  let bgColor, txtColor, borderColor, hoverColor, textareaColor, btnColor;
+
+  if (couleur == "gray") {
+    bgColor = "#222";
+    txtColor = "rgb(202, 201, 201)";
+    borderColor = "gray";
+    hoverColor = "rgb(148, 147, 147)";
+    textareaColor = "rgb(202, 201, 201)";
+    btnColor = "rgb(202, 201, 201)";
   }
-  btnTest.style.backgroundColor = "white";
+  if (couleur == "dark") {
+    bgColor = "black";
+    txtColor = "white";
+    borderColor = "white";
+    hoverColor = "rgb(163, 162, 162)";
+    textareaColor = "#222";
+    btnColor = "white";
+  }
+  if (couleur == "white") {
+    bgColor = "white";
+    txtColor = "black";
+    borderColor = "black";
+    hoverColor = "rgb(148, 147, 147)";
+    textareaColor = "#333";
+    btnColor = "rgb(202, 201, 201)";
+  }
+  if (couleur == "blue") {
+    bgColor = "lightblue";
+    txtColor = "black";
+    borderColor = "rgb(6, 107, 189)";
+    hoverColor = "rgb(3, 68, 121)";
+    textareaColor = "white";
+    btnColor = "rgb(6, 107, 189)";
+  }
+
+  body.style.backgroundColor = bgColor;
+  body.style.color = txtColor;
+  for (let i = 0; i < textarea.length; i++) {
+    textarea[i].style.backgroundColor = textareaColor;
+    textarea[i].style.color = txtColor;
+    textarea[i].style.borderColor = borderColor;
+  }
+  btnTest.style.backgroundColor = btnColor;
   btnTest.style.color = "black";
   btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(163, 162, 162)";
+    btnTest.style.backgroundColor = hoverColor;
     btnTest.style.color = "black";
   });
   btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "white";
+    btnTest.style.backgroundColor = btnColor;
     btnTest.style.color = "black";
   });
   for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "white";
+    li[i].style.color = txtColor;
     li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "rgb(163, 162, 162)";
+      li[i].style.color = hoverColor;
       li[i].style.fontWeight = "bold";
     });
     li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "white";
-      li[i].style.fontWeight = "normal";
-    });
-  }
-}
-
-function gray() {
-  body.style.backgroundColor = "#222";
-  body.style.color = "rgb(202, 201, 201)";
-  for (let i = 0; i < textarea.length; i++) {
-    textarea[i].style.backgroundColor = "#333";
-    textarea[i].style.color = "rgb(202, 201, 201)";
-    textarea[i].style.borderColor = "gray";
-  }
-  btnTest.style.backgroundColor = "rgb(202, 201, 201)";
-  btnTest.style.color = "black";
-  btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(148, 147, 147)";
-    btnTest.style.color = "black";
-  });
-  btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
-    btnTest.style.color = "black";
-  });
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "rgb(202, 201, 201)";
-    li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "rgb(148, 147, 147)";
-      li[i].style.fontWeight = "bold";
-    });
-    li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "rgb(202, 201, 201)";
-      li[i].style.fontWeight = "normal";
-    });
-  }
-}
-
-function white() {
-  body.style.backgroundColor = "white";
-  body.style.color = "black";
-  for (let i = 0; i < textarea.length; i++) {
-    textarea[i].style.backgroundColor = "rgb(202, 201, 201)";
-    textarea[i].style.color = "black";
-    textarea[i].style.borderColor = "black";
-  }
-  btnTest.style.backgroundColor = "rgb(202, 201, 201)";
-  btnTest.style.color = "black";
-  btnTest.style.border = "black";
-  btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(148, 147, 147)";
-    btnTest.style.color = "black";
-  });
-  btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
-    btnTest.style.color = "black";
-  });
-
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "black";
-    li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "rgb(202, 201, 201)";
-      li[i].style.fontWeight = "bold";
-    });
-    li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "black";
-      li[i].style.fontWeight = "normal";
-    });
-  }
-}
-
-function blue() {
-  body.style.backgroundColor = "lightblue";
-  body.style.color = "black";
-  for (let i = 0; i < textarea.length; i++) {
-    textarea[i].style.backgroundColor = "white";
-    textarea[i].style.color = "black";
-    textarea[i].style.borderColor = "rgb(6, 107, 189)";
-  }
-  btnTest.style.backgroundColor = "rgb(6, 107, 189)";
-  btnTest.style.color = "white";
-  btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(3, 68, 121)";
-    btnTest.style.color = "white";
-  });
-  btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "rgb(6, 107, 189)";
-    btnTest.style.color = "white";
-  });
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.color = "black";
-    li[i].addEventListener("mouseover", function () {
-      li[i].style.color = "rgb(3, 68, 121)";
-      li[i].style.fontWeight = "bold";
-    });
-    li[i].addEventListener("mouseout", function () {
-      li[i].style.color = "black";
+      li[i].style.color = txtColor;
       li[i].style.fontWeight = "normal";
     });
   }
