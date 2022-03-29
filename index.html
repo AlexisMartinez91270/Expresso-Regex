@@ -20,25 +20,26 @@
           <button id="btnTest">Test</button>
         </div>
         <span>Classic regular expression</span>
-        <div class="btn">
-          <button id="btnMail">E-mail</button>
-        </div>
-        <div class="btn">
-          <button id="btnIP">Adresse IP</button>
-        </div>
+        <select onchange="regularExpression(this.value)">
+          <option value="">--Please choose an option--</option>
+          <option value="email">E-mail</option>
+          <option value="ip">Adresse IP</option>
+        </select>
       </div>
 
       <div id="conteneurTxt">
         <div class="text">
           <p>Regular Expression</p>
           <p id="match"></p>
-          <textarea id="expR" rows="1">
-Insert your regular expression here</textarea
-          >
+          <div class="textarea" id="expR" contenteditable>
+            insert your expression here
+          </div>
         </div>
         <div class="text">
           <p>Test String</p>
-          <textarea id="txt" rows="32">Insert your text here</textarea>
+          <div class="textarea" id="txt" contenteditable>
+            insert your text here
+          </div>
         </div>
       </div>
 

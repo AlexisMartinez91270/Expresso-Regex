@@ -5,16 +5,13 @@ console.log(txt);
 const expR = document.getElementById("expR");
 console.log(expR);
 const match = document.getElementById("match");
-const txtExpR = document.getElementById("txtExpR");
 const btnTest = document.getElementById("btnTest");
-const btnMail = document.getElementById("btnMail");
-const btnIP = document.getElementById("btnIP");
 let resultList = document.getElementById("resultList");
 let resultat;
 let li;
 
 const initRegex = function () {
-  const regex = new RegExp(`${expR.value}`, "g");
+  const regex = new RegExp(`${expR.innerText}`, "g");
   console.log(regex);
   return regex;
 };
@@ -22,14 +19,14 @@ const initRegex = function () {
 const error = document.getElementById("error");
 
 const testVide = function () {
-  if (txt.value == "" && expR.value == "") {
+  if (txt.innerText == "" && expR.innerText == "") {
     resultat = 1;
     error.textContent =
       "Veuillez rentrez du texte et votre expression régulière";
-  } else if (expR.value == "") {
+  } else if (expR.innerText == "") {
     resultat = 1;
     error.textContent = "Veuillez rentrez votre expression régulière";
-  } else if (txt.value == "") {
+  } else if (txt.innerText == "") {
     resultat = 1;
     error.textContent = "Veuillez rentrez du texte";
   } else {
@@ -39,13 +36,27 @@ const testVide = function () {
 };
 
 const createList = function () {
+  let startText = txt.innerText;
+  console.log(resultat);
   resultList.innerHTML = "";
   for (let i = 0; i < resultat.length; i++) {
     let li = document.createElement("li");
     li.innerText = resultat[i];
-    li.onclick = function () {
-      let long = resultat[i].toString();
-      alert(long.length);
+    li.onclick = function select() {
+      txt.innerHTML = startText;
+      let txtMatch = li.innerText;
+      console.log(txtMatch);
+      var innerHTML = txt.innerHTML;
+      var index = innerHTML.indexOf(txtMatch);
+      if (index >= 0) {
+        innerHTML =
+          innerHTML.substring(0, index) +
+          "<span class='highlight'>" +
+          innerHTML.substring(index, index + txtMatch.length) +
+          "</span>" +
+          innerHTML.substring(index + txtMatch.length);
+        txt.innerHTML = innerHTML;
+      }
     };
     resultList.appendChild(li);
   }
@@ -56,18 +67,17 @@ const testTxt = function () {
   const regex = initRegex();
   let vide = testVide();
   if (vide === null) {
-    resultat = Array.from(regex[Symbol.matchAll](txt.value));
+    resultat = Array.from(regex[Symbol.matchAll](txt.innerText));
   }
   createList();
-  console.log(resultat);
 };
 
 btnTest.addEventListener("click", testTxt);
 
 onkeyup = function () {
   const regex = initRegex();
-  resultat = regex.test(txt.value);
-  if (txt.value == "" || expR.value == "") {
+  resultat = regex.test(txt.innerText);
+  if (txt.innerText == "" || expR.innerText == "") {
     resultat = "No Match";
     match.style.color = "red";
   } else if (resultat) {
@@ -81,10 +91,14 @@ onkeyup = function () {
   console.log(resultat);
 };
 
-const email = function () {
-  txtExpR.style.color = "rgb(202, 201, 201)";
-  const expRMail = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}";
-  const regex = new RegExp(expRMail, "g");
+const regularExpression = function (nom) {
+  let expReg;
+  if (nom == "email") {
+    expReg = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}";
+  } else if (nom == "ip") {
+    expReg = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b";
+  }
+  const regex = new RegExp(expReg, "g");
   let vide = testVide();
   if (vide === null) {
     resultat = Array.from(regex[Symbol.matchAll](txt.value));
@@ -93,53 +107,42 @@ const email = function () {
   console.log(resultat);
 };
 
-btnMail.addEventListener("click", email);
-
-const ip = function () {
-  txtExpR.style.color = "rgb(202, 201, 201)";
-  const expRIp = "\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b";
-  const regex = new RegExp(expRIp, "g");
-  let vide = testVide();
-  if (vide === null) {
-    resultat = Array.from(regex[Symbol.matchAll](txt.value));
+// Textarea focus
+txt.addEventListener("focus", function () {
+  if (txt.innerText == "insert your text here") {
+    txt.innerHTML = "";
   }
-  createList();
-  console.log(resultat);
-};
+});
+expR.addEventListener("focus", function () {
+  if (expR.innerText == "insert your epression here") {
+    expR.innerHTML = "";
+  }
+});
 
-btnIP.addEventListener("click", ip);
-
-const textarea = document.querySelectorAll("textarea");
-
-for (let i = 0; i < textarea.length; i++) {
-  textarea[i].addEventListener("focus", function () {
-    textarea[i].textContent = "";
-  });
-}
+const textarea = document.getElementsByClassName("textarea");
 
 // Themes
 const body = document.querySelector("body");
-const button = document.querySelectorAll("button");
 
 function dark() {
   body.style.backgroundColor = "black";
   body.style.color = "rgb(163, 162, 162)";
   for (let i = 0; i < textarea.length; i++) {
-    button[i].style.backgroundColor = "white";
-    button[i].style.color = "black";
     textarea[i].style.backgroundColor = "#222";
     textarea[i].style.color = "rgb(163, 162, 162)";
+    textarea[i].style.borderColor = "white";
   }
-  for (let i = 0; i < button.length; i++) {
-    button[i].addEventListener("mouseover", function () {
-      button[i].style.backgroundColor = "rgb(163, 162, 162)";
-      button[i].style.color = "black";
-    });
-    button[i].addEventListener("mouseout", function () {
-      button[i].style.backgroundColor = "white";
-      button[i].style.color = "black";
-    });
-  }
+  btnTest.style.backgroundColor = "white";
+  btnTest.style.color = "black";
+  btnTest.style.borderColor = "white";
+  btnTest.addEventListener("mouseover", function () {
+    btnTest.style.backgroundColor = "rgb(163, 162, 162)";
+    btnTest.style.color = "black";
+  });
+  btnTest.addEventListener("mouseout", function () {
+    btnTest.style.backgroundColor = "white";
+    btnTest.style.color = "black";
+  });
   for (let i = 0; i < li.length; i++) {
     li[i].style.color = "rgb(163, 162, 162)";
     li[i].addEventListener("mouseover", function () {
@@ -159,19 +162,19 @@ function gray() {
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "#333";
     textarea[i].style.color = "rgb(202, 201, 201)";
+    textarea[i].style.borderColor = "gray";
   }
-  for (let i = 0; i < button.length; i++) {
-    button[i].style.backgroundColor = "white";
-    button[i].style.color = "black";
-    button[i].addEventListener("mouseover", function () {
-      button[i].style.backgroundColor = "rgb(202, 201, 201)";
-      button[i].style.color = "black";
-    });
-    button[i].addEventListener("mouseout", function () {
-      button[i].style.backgroundColor = "white";
-      button[i].style.color = "black";
-    });
-  }
+  btnTest.style.borderColor = "gray";
+  btnTest.style.backgroundColor = "white";
+  btnTest.style.color = "black";
+  btnTest.addEventListener("mouseover", function () {
+    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+    btnTest.style.color = "black";
+  });
+  btnTest.addEventListener("mouseout", function () {
+    btnTest.style.backgroundColor = "white";
+    btnTest.style.color = "black";
+  });
   for (let i = 0; i < li.length; i++) {
     li[i].style.color = "rgb(202, 201, 201)";
     li[i].addEventListener("mouseover", function () {
@@ -191,19 +194,20 @@ function white() {
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "rgb(202, 201, 201)";
     textarea[i].style.color = "black";
+    textarea[i].style.borderColor = "black";
   }
-  for (let i = 0; i < button.length; i++) {
-    button[i].style.backgroundColor = "rgb(202, 201, 201)";
-    button[i].style.color = "black";
-    button[i].addEventListener("mouseover", function () {
-      button[i].style.backgroundColor = "#999";
-      button[i].style.color = "black";
-    });
-    button[i].addEventListener("mouseout", function () {
-      button[i].style.backgroundColor = "rgb(202, 201, 201)";
-      button[i].style.color = "black";
-    });
-  }
+  btnTest.style.borderColor = "black";
+  btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+  btnTest.style.color = "black";
+  btnTest.addEventListener("mouseover", function () {
+    btnTest.style.backgroundColor = "#999";
+    btnTest.style.color = "black";
+  });
+  btnTest.addEventListener("mouseout", function () {
+    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+    btnTest.style.color = "black";
+  });
+
   for (let i = 0; i < li.length; i++) {
     li[i].style.color = "black";
     li[i].addEventListener("mouseover", function () {
@@ -219,23 +223,23 @@ function white() {
 
 function blue() {
   body.style.backgroundColor = "lightblue";
-  body.style.color = "white";
+  body.style.color = "black";
   for (let i = 0; i < textarea.length; i++) {
     textarea[i].style.backgroundColor = "white";
     textarea[i].style.color = "black";
+    textarea[i].style.borderColor = "rgb(6, 107, 189)";
   }
-  for (let i = 0; i < button.length; i++) {
-    button[i].style.backgroundColor = "white";
-    button[i].style.color = "black";
-    button[i].addEventListener("mouseover", function () {
-      button[i].style.backgroundColor = "rgb(6, 107, 189)";
-      button[i].style.color = "white";
-    });
-    button[i].addEventListener("mouseout", function () {
-      button[i].style.backgroundColor = "white";
-      button[i].style.color = "black";
-    });
-  }
+  btnTest.style.borderColor = "gb(6, 107, 189)";
+  btnTest.style.backgroundColor = "white";
+  btnTest.style.color = "black";
+  btnTest.addEventListener("mouseover", function () {
+    btnTest.style.backgroundColor = "rgb(6, 107, 189)";
+    btnTest.style.color = "white";
+  });
+  btnTest.addEventListener("mouseout", function () {
+    btnTest.style.backgroundColor = "white";
+    btnTest.style.color = "black";
+  });
   for (let i = 0; i < li.length; i++) {
     li[i].style.color = "white";
     li[i].addEventListener("mouseover", function () {
