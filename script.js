@@ -194,15 +194,15 @@ function white() {
     textarea[i].style.color = "black";
     textarea[i].style.borderColor = "black";
   }
-  btnTest.style.backgroundColor = "white";
+  btnTest.style.backgroundColor = "rgb(202, 201, 201)";
   btnTest.style.color = "black";
   btnTest.style.border = "black";
   btnTest.addEventListener("mouseover", function () {
-    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
+    btnTest.style.backgroundColor = "rgb(148, 147, 147)";
     btnTest.style.color = "black";
   });
   btnTest.addEventListener("mouseout", function () {
-    btnTest.style.backgroundColor = "white";
+    btnTest.style.backgroundColor = "rgb(202, 201, 201)";
     btnTest.style.color = "black";
   });
 
